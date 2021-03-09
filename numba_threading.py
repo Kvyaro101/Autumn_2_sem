@@ -2,12 +2,12 @@
 import timeit
 import threading
 import numpy as np
-from numba import njit
+from numba import njit, prange
 
 def strght_distribution(dots_number: 'int'):
     """Naive pi"""
     pi_sum = 0
-    for i in range(dots_number):
+    for i in prange(dots_number):
         cord_x, cord_y = np.random.random_sample(), np.random.random_sample()
         rad = ((0.5-cord_x)**2+(0.5-cord_y)**2)**0.5
         if rad < 0.5:
@@ -18,7 +18,7 @@ def strght_distribution(dots_number: 'int'):
 def numba_distribution(dots_number: 'int'):
     """pi with numba boost"""
     pi_sum = 0
-    for i in range(dots_number):
+    for i in prange(dots_number,):
         cord_x, cord_y = np.random.random_sample(), np.random.random_sample()
         rad = ((0.5-cord_x)**2+(0.5-cord_y)**2)**0.5
         if rad < 0.5:
