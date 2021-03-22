@@ -1,19 +1,16 @@
-# -*- coding: utf-8 -*-
+'''GUI and app'''
 
-import os
-import asyncio
-import aiofiles
-import asyncqt
 import sys
-from asyncqt import asyncSlot
+import os
 from PyQt5 import QtCore, QtGui, QtWidgets, QtMultimedia
-import PyQt5.QtWidgets
 from PyQt5.QtGui import QIcon
 
 CURRENT_DIR = os.path.dirname(os.path.realpath(__file__))
 
-class Ui_MainWindow(object):
+class Ui_MainWindow:
+    '''GUI geometry'''
     def setupUi(self, MainWindow):
+        '''Main GUI geometry'''
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(390, 567)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
@@ -21,7 +18,7 @@ class Ui_MainWindow(object):
 " ")
         self.centralwidget.setObjectName("centralwidget")
 
-        self.pushButton = PyQt5.QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton.setGeometry(QtCore.QRect(50, 20, 291, 101))
         font = QtGui.QFont()
         font.setFamily("Times New Roman")
@@ -111,6 +108,7 @@ class Ui_MainWindow(object):
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
+        '''Buttons names'''
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.pushButton.setText(_translate("MainWindow", "Autumn Blaze"))
@@ -121,34 +119,40 @@ class Ui_MainWindow(object):
 
 class mlp_bible(QtWidgets.QMainWindow):
     def __init__(self):
-        self.naming = ''
+        '''GUI initiating'''
         super(mlp_bible, self).__init__()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         self.init_UI()
 
     def init_UI(self):
+        '''Actions initiated by clicking'''
         self.setWindowTitle ("Best Of MLP")
         self.setWindowIcon(QIcon('window_icon.jpg'))
-        self.ui.pushButton.clicked.connect(self.PerformOperation, PyQt5.QtCore.Qt.QueuedConnection)
-        self.ui.pushButton_2.clicked.connect(self.PerformOperation_2, PyQt5.QtCore.Qt.QueuedConnection)
-        self.ui.pushButton_3.clicked.connect(self.PerformOperation_3, PyQt5.QtCore.Qt.QueuedConnection)
-        self.ui.pushButton_4.clicked.connect(self.PerformOperation_4, PyQt5.QtCore.Qt.QueuedConnection)
-        self.ui.pushButton_5.clicked.connect(self.PerformOperation_5, PyQt5.QtCore.Qt.QueuedConnection)
+        self.ui.pushButton.clicked.connect(self.PerformOperation)
+        self.ui.pushButton_2.clicked.connect(self.PerformOperation_2)
+        self.ui.pushButton_3.clicked.connect(self.PerformOperation_3)
+        self.ui.pushButton_4.clicked.connect(self.PerformOperation_4)
+        self.ui.pushButton_5.clicked.connect(self.PerformOperation_5)
 
     def PerformOperation(self):
+        '''Initiating AB.wav'''
         filename = os.path.join(CURRENT_DIR, 'AB.wav')
         QtMultimedia.QSound.play(filename)
     def PerformOperation_2(self):
+        '''Initiating TS.wav'''
         filename = os.path.join(CURRENT_DIR, 'TS.wav')
         QtMultimedia.QSound.play(filename)
     def PerformOperation_3(self):
+        '''Initiating RT.wav'''
         filename = os.path.join(CURRENT_DIR, 'RT.wav')
         QtMultimedia.QSound.play(filename)
     def PerformOperation_4(self):
+        '''Initiating StG.wav'''
         filename = os.path.join(CURRENT_DIR, 'StG.wav')
         QtMultimedia.QSound.play(filename)
     def PerformOperation_5(self):
+        '''Initiating EG.wav'''
         filename = os.path.join(CURRENT_DIR, 'EG.wav')
         QtMultimedia.QSound.play(filename)
 
