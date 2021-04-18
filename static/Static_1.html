@@ -1,0 +1,43 @@
+  <head>
+    <div id="player"></div>
+<script src="//www.youtube.com/iframe_api"></script>
+
+<script>
+    var videoIDs = [
+        'aUxJNNcaE-M',
+        'aqNRBs1O_fA',
+        'RAhqxvgQYn0',
+        'XfBuWrbJ0nQ',
+        'dAXa3wTZjes'
+    ];
+
+    var player, currentVideoId = 0;
+
+    function onYouTubeIframeAPIReady() {
+        player = new YT.Player('player', {
+            height: '540',
+            width: '990',
+            events: {
+                'onReady': onPlayerReady,
+                'onStateChange': onPlayerStateChange
+            }
+        });
+    }
+
+    function onPlayerReady(event) {
+        event.target.loadVideoById(videoIDs[currentVideoId]);
+    }
+
+    function onPlayerStateChange(event) {
+        if (event.data == YT.PlayerState.ENDED) {
+            currentVideoId++;
+            if (currentVideoId < videoIDs.length) {
+                player.loadVideoById(videoIDs[currentVideoId]);
+            }
+        }
+    }
+</script>
+    <meta charset="utf-8" />
+    <title>Well, yeah</title>
+  </head>
+</html>
