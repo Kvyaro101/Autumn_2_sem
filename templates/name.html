@@ -1,0 +1,13 @@
+{% block content %}
+<p>Well, well, well. What number's GCD and LCM did we just found here: {{name}}</p>
+
+<form action="/name" method="GET">
+  <input type="text" value="{{name}}" name="name" />
+  <input type="submit" value="LCM+GCD (GET)">
+</form>
+
+<form action="/name" method="POST">
+  <input type="text" value="{{name}}" name="name" />
+  <input type="submit" value="LCM+GCD (POST)">
+</form>
+{% endblock %}
